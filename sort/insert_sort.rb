@@ -1,6 +1,7 @@
 class Array
   def insert_sort
-    inject([]){|mem,var| mem.insert_with_order(var) }
+    # default: []
+    inject([]){|mem,var| mem.insert_with_order(var)}
   end
 
   def insert_with_order(item)

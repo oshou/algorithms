@@ -2,12 +2,14 @@ class Array
   def select_sort
     tmp = self.dup
     res = []
-    res.push tmp.delete_min until tmp.empty?
-    res
+    res.push(tmp.pickup_min) until tmp.empty?
+    return res
   end
 
-  def delete_min
-    min_idx = find_index{|item| item == self.min}
-    delete_at(min_idx)
+  def pickup_min
+    (self.length-1).times do |i|
+      self[i],self[i+1] = self[i+1],self[i] if self[i] < self[i+1]
+    end
+    delete_at(-1)
   end
 end
