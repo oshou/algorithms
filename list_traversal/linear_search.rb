@@ -1,16 +1,14 @@
-def linear_search(value)
-  self.each do |number|
-    if number == value
-      return "Found!!!"
-    end
-  end
-end
+# 線形探索(リニアサーチ)
+#
+# 特定の値が存在するか、リスト(配列)の先頭から末尾まで順番に検索
 
-def create_random_array(ary_size)
-  return (1..ary_size).to_a.shuffle
+def linear_search(ary,val)
+  ary.each {|num|
+    return "Found!!!" if num == val
+  }
 end
 
 N = 100
-sample_ary = create_random_array(N)
-print sample_ary
-sample_ary.linear_search(80)
+VAL = 80
+sample_ary = (1..N).to_a.shuffle
+puts linear_search(sample_ary,VAL)
