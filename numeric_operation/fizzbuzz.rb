@@ -81,8 +81,14 @@ def fizzbuzz_while(n)
 end
 
 N = 30
+
+puts "[for]"
 fizzbuzz_for(N)
+puts "[upto]"
 fizzbuzz_upto(N)
+puts "[each]"
 fizzbuzz_each(N)
+puts "[times]"
 fizzbuzz_times(N)
+puts "[while]"
 fizzbuzz_while(N)
