@@ -79,3 +79,10 @@ def fizzbuzz_while(n)
     i += 1
   end
 end
+
+N = 30
+fizbuzz_for(N)
+fizbuzz_upto(N)
+fizbuzz_each(N)
+fizbuzz_times(N)
+fizbuzz_while(N)
