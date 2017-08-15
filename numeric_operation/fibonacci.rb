@@ -9,7 +9,7 @@
 
 # 通常計算
 def fib1(n)
-  return n if n < 2;
+  return n if n < 2
   p2 = 0
   p1 = 1
   2.upto(n){p2,p1 = p1,p2+p1}
