@@ -10,31 +10,40 @@ class Tree
   end
 
   # dfs(深さ優先探索)
-  def dfs(num)
-    return true if @value = num
+  def dfs(v)
+    puts @value
+    return true if @value == v
     @children.each {|c|
-      return true if c.dfs(num)
+      return true if c.dfs(v)
     }
     false
   end
 
   # bfs(幅優先探索)
   def bfs(num)
-    return true if @value = num
-    @children.each {|c|
-      return true if c.bfs(num)
-    }
-    false
+    queue  =  Queue.new
+    queue.enq(num)
+    puts queue
+    while(queue.size! = 0)
+      self  =  queue.shift
+      puts @value
+      @children.each do |child|
+        queue.push(child)
+      end
+    end
   end
 end
 
 t1 = Tree.new(1,[
-  Tree.new(2)
-  Tree.new(3)
-  Tree.new(4,[
-    Tree.new(5)
+  Tree.new(2,[
+    Tree.new(5),
     Tree.new(6)
-  ])
+  ]),
+  Tree.new(3,[
+    Tree.new(7),
+    Tree.new(8)
+  ]),
+  Tree.new(4)
 ])
-t1.dfs(5)
-t1.bfs(5)
+puts t1.dfs(8)
+puts t1.bfs(8)
