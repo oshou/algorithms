@@ -21,11 +21,10 @@ class Tree
 
   # bfs(幅優先探索)
   def bfs(num)
-    queue  =  Queue.new
+    queue = Queue.new
     queue.enq(num)
     puts queue
-    while(queue.size! = 0)
-      self  =  queue.shift
+    while(queue.size!=0)
       puts @value
       @children.each do |child|
         queue.push(child)
