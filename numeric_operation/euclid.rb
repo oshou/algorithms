@@ -7,16 +7,16 @@
 # - Rn-1が最大公約数
 
 # 通常計算
-def gcd1(a,b)
+def euclid1(a,b)
   a,b = b,a%b while b > 0
   return a
 end
 
 # 再帰
-def gcd2(a,b)
+def euclid2(a,b)
   return a if b == 0
-  return gcd2(b,a%b)
+  return euclid2(b,a%b)
 end
 
-puts gcd1(1920,1080)
-puts gcd2(1920,1080)
+puts euclid1(1920,1080)
+puts euclid2(1920,1080)
