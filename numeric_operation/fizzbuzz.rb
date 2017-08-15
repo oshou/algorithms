@@ -50,7 +50,7 @@ end
 
 # times
 def fizzbuzz_times(n)
-  (1..n).times do |i|
+  1..n.times do |i|
     if i%15 == 0
       puts "FizzBuzz!"
     elsif i%3 == 0
