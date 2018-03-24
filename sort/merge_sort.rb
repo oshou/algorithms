@@ -25,3 +25,6 @@ class Array
     res
   end
 end
+
+ary = [3,4,8,7,1,6,2,11,10]
+print ary.merge_sort

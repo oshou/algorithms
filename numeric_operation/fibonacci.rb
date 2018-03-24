@@ -35,6 +35,7 @@ def fib3_memo(n)
   @cache[n] ||= fib3(n)
 end
 
-40.times{|n| puts "fib1(#{n}): #{fib1(n)}"}
-# 100.times{|n| puts "fib2(#{n}): #{fib2(n)}"}
-40.times{|n| puts "fib3(#{n}): #{fib3_memo(n)}"}
+N = 40
+N.times{|n| puts "fib1(#{n}): #{fib1(n)}"}
+# N.times{|n| puts "fib2(#{n}): #{fib2(n)}"}
+N.times{|n| puts "fib3(#{n}): #{fib3_memo(n)}"}
