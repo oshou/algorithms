@@ -7,9 +7,10 @@ class Array
   end
 
   def pickup_min
-    (self.length-1).times do |i|
-      self[i],self[i+1] = self[i+1],self[i] if self[i] < self[i+1]
-    end
-    delete_at(-1)
+    min_idx  =  find_index { |item| item == self.min }
+    delete_at(min_idx)
   end
 end
+
+ary = [3,4,8,7,1,6,2,11,10]
+print ary.select_sort
