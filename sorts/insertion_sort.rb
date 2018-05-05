@@ -9,3 +9,6 @@ class Array
     insert(pos,item)
   end
 end
+
+ary = [3,4,8,7,1,6,2,11,10]
+print ary.insert_sort

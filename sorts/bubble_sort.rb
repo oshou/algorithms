@@ -13,3 +13,6 @@ class Array
     delete_at(-1)
   end
 end
+
+ary = [3,4,8,7,1,6,2,11,10]
+print ary.bubble_sort

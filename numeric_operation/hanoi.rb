@@ -7,7 +7,7 @@ POLES = ["A","B","C"]
 
 def hanoi(n, from, to)
   return if n == 0
-  temp = POLES - [from,to].to_s
+  temp = POLES-[from,to].to_s
   hanoi(n-1, from, temp)
   puts "move disk##{n} from #{from} to #{to}"
   hanoi(n-1, temp, to)
