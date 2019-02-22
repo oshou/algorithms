@@ -1,3 +1,6 @@
+from functools import lru_cache
+
+@lru_cache(maxsize=1024)
 def getFib(n):
     global cnt
     cnt += 1
