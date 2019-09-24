@@ -10,7 +10,7 @@ def fibonacci_memo(n):
             return 1
         if memo[n]:
             return memo[n]
-        memo[n] = _fib(n-1)+_fib(n-2)
+        memo[n] = _fib(n-2)+_fib(n-1)
         return memo[n]
 
     return _fib(n)

@@ -24,12 +24,10 @@ def quick_sort(arr):
     quick_sort(high)
 
     # 結合
-    print(low)
     low.reverse()
     while low:
         arr.append(low.pop())
     arr.append(pivot)
-    print(high)
     high.reverse()
     while high:
         arr.append(high.pop())

@@ -9,9 +9,11 @@
 
 def __logging(visited, rest=[]):
     if rest:
-        print "visited:%s\n rest:%s\n" % (visited, rest)
+        print("visited:", visited)
+        print("rest:", rest)
     else:
-        print "visited:%s" % visited
+        print("visited:", visited)
+        print("rest:", rest)
 
 
 def dfs(graph, start, end, visited=[]):
