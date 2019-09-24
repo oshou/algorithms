@@ -1,16 +1,42 @@
 #!/usr/bin/env python
-# -*- coding:utf-8
+
 
 def quick_sort(arr):
-    arr_length = len(arr)
-    if ( arr_length <= 1):
+    n = len(arr)
+
+    # ソート不要であれば即返却
+    if n <= 1:
         return arr
-    else:
-        PIVOT = arr[0]
-        GREATER = [ element for element in arr[1:] if element > PIVOT ]
-        LESSER = [ element for element in arr[1:] if element <= PIVOT ]
-        return quick_sort(LESSER) + [PIVOT] + quick_sort(GREATER)
+
+    # 分割
+    low = []
+    pivot = arr.pop()
+    high = []
+    while arr:
+        e = arr.pop()
+        if e <= pivot:
+            low.append(e)
+        else:
+            high.append(e)
+
+    # ソート
+    quick_sort(low)
+    quick_sort(high)
+
+    # 結合
+    print(low)
+    low.reverse()
+    while low:
+        arr.append(low.pop())
+    arr.append(pivot)
+    print(high)
+    high.reverse()
+    while high:
+        arr.append(high.pop())
+
+    return arr
+
 
 if __name__ == '__main__':
-    unsorted = [1,8,5,3,126,33,25,26,35,14,52]
+    unsorted = [1, 8, 5, 3, 126, 33, 25, 26, 35, 14, 52]
     print(quick_sort(unsorted))

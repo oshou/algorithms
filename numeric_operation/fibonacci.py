@@ -1,11 +1,13 @@
-def getFib(n):
-    global cnt
-    cnt += 1
-    if (n == 0): return 1;
-    if (n == 1): return 2;
-    return getFib(n-1) + getFib(n-2)
+#!/usr/bin/env python
+# -*- coding:utf-8
 
-n = int(input())
-cnt = 0
-print("fib(n): ", getFib(n))
-print("cnt: ", cnt)
+
+def fibonacci(n):
+    if n <= 1:
+        return 1
+    return fibonacci(n-1)+fibonacci(n-2)
+
+
+if __name__ == '__main__':
+    n = input("n: ")
+    print(fibonacci(int(n)))

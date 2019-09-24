@@ -1,14 +1,21 @@
-from functools import lru_cache
+#!/usr/bin/env python
+# -*- coding:utf-8
 
-@lru_cache(maxsize=1024)
-def getFib(n):
-    global cnt
-    cnt += 1
-    if (n == 0): return 1;
-    if (n == 1): return 2;
-    return getFib(n-1) + getFib(n-2)
 
-n = int(input())
-cnt = 0
-print("fib(n): ", getFib(n))
-print("cnt: ", cnt)
+def fibonacci_memo(n):
+    memo = [0]*(n+1)
+
+    def _fib(n):
+        if n <= 1:
+            return 1
+        if memo[n]:
+            return memo[n]
+        memo[n] = _fib(n-1)+_fib(n-2)
+        return memo[n]
+
+    return _fib(n)
+
+
+if __name__ == '__main__':
+    n = input("n: ")
+    print(fibonacci_memo(int(n)))
