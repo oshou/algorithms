@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# -*- coding:utf-8
 
 
 def fizzbuzz(n):
@@ -14,5 +15,5 @@ def fizzbuzz(n):
 
 
 if __name__ == '__main__':
-    n = input("n: ")
-    fizzbuzz(int(n))
+    n = int(input("n: "))
+    fizzbuzz(n)
