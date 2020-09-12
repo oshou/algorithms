@@ -1,22 +1,15 @@
 <?php
-function linear_search(array $arr, int $n): int
+
+function linear_search(array $arr, int $v): bool
 {
     for ($i = 0; $i < count($arr); $i++) {
-        if ($arr[$i] === $n) {
-            return $i;
+        if ($arr[$i] === $v) {
+            return true;
         }
     }
-    return -1;
+    return false;
 }
 
-# Random Array
-$arr = range(1, 10000, 1);
-sort($arr);
-$searchValue = 500;
-
-# Sorted Array
-$startTime = microtime(true);
-$index = linear_search($arr, $searchValue);
-echo $index . PHP_EOL;
-$endTime = microtime(true);
-echo "time: " . ($endTime - $startTime) . PHP_EOL;
+$arr = [1, 3, 9, 2, 7, 3, 4, 7];
+$value = 3;
+echo linear_search($arr, $value) . PHP_EOL;

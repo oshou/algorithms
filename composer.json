@@ -14,11 +14,8 @@
   },
   "autoload": {
     "psr-4": {
-      "Algorithms\\": "algorithms/"
-    },
-    "classmap": [
-      "database/seeds",
-      "database/factories"
-    ]
+      "Algorithms\\Sorts\\": "algorithms/sorts",
+      "Algorithms\\NumericOperation\\": "algorithms/numeric_op"
+    }
   }
 }
