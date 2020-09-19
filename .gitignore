@@ -1,3 +1,6 @@
 /vendor/
 composer.lock
 *.out
+
+.pytest_cache
+__pycache__
