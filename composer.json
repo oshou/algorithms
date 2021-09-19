@@ -14,7 +14,7 @@
   },
   "autoload": {
     "psr-4": {
-      "Algorithms\\Sorts\\": "algorithms/sorts",
+      "Algorithms\\Sort\\": "algorithms/sort",
       "Algorithms\\NumericOperation\\": "algorithms/numeric_op"
     }
   }

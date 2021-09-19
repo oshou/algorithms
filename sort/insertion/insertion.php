@@ -2,9 +2,8 @@
 
 require __DIR__ . "/../vendor/autoload.php";
 
-use Algorithms\Sorts;
+use Algorithms\Sort;
 
-# Insert Sort
 class InsertSort
 {
     static function run(array $nums): array

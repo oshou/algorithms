@@ -17,7 +17,7 @@ func bubble(arr []int) []int {
 }
 
 func main() {
-	arr := []int{80, 65, 70, 90, 30, 25, 35}
-	sorted := bubble(arr)
+	unsorted := []int{1, 8, 5, 3, 126, 33, 25, 26, 35, 14, 52}
+	sorted := bubble(unsorted)
 	fmt.Println(sorted)
 }
