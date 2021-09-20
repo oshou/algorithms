@@ -6,40 +6,38 @@ import (
 )
 
 type Stack interface {
-	Push(v int)
-	Pop() (int, error)
+	Push(v interface{})
+	Pop() (interface{}, error)
 	IsEmpty() bool
 }
 
-type stack struct {
-	data []int
-	size int
+type StackImpl struct {
+	data []interface{}
 }
 
-func NewStack(cap int) *stack {
-	d := make([]int, 0, cap)
-	s := 0
-	return &stack{data: d, size: s}
+func NewStack(cap int) *StackImpl {
+	d := make([]interface{}, 0, cap)
+	return &StackImpl{
+		data: d,
+	}
 }
 
-func (s *stack) Push(v int) {
+func (s *StackImpl) Push(v interface{}) {
 	s.data = append(s.data, v)
-	s.size += 1
 }
 
-func (s *stack) Pop() (int, error) {
+func (s *StackImpl) Pop() (interface{}, error) {
 	if s.IsEmpty() {
 		return 0, errors.New("stack is empty")
 	}
-	v := s.data[s.size-1]
-	s.data = s.data[:s.size-1]
-	s.size -= 1
+	v := s.data[len(s.data)-1]
+	s.data = s.data[:len(s.data)-1]
 
 	return v, nil
 }
 
-func (s *stack) IsEmpty() bool {
-	return s.size == 0
+func (s *StackImpl) IsEmpty() bool {
+	return len(s.data) == 0
 }
 
 func main() {

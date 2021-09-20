@@ -6,40 +6,38 @@ import (
 )
 
 type Queue interface {
-	Enqueue(v int)
-	Dequeue() (int, error)
+	Enqueue(v interface{})
+	Dequeue() (interface{}, error)
 	IsEmpty() bool
 }
 
-type queue struct {
-	data []int
-	size int
+type QueueImpl struct {
+	data []interface{}
 }
 
-func NewQueue(cap int) *queue {
-	d := make([]int, 0, cap)
-	s := 0
-	return &queue{data: d, size: s}
+func NewQueue(cap int) *QueueImpl {
+	d := make([]interface{}, 0, cap)
+	return &QueueImpl{
+		data: d,
+	}
 }
 
-func (q *queue) Enqueue(v int) {
+func (q *QueueImpl) Enqueue(v interface{}) {
 	q.data = append(q.data, v)
-	q.size += 1
 }
 
-func (q *queue) Dequeue() (int, error) {
+func (q *QueueImpl) Dequeue() (interface{}, error) {
 	if q.IsEmpty() {
 		return 0, errors.New("queue is empty")
 	}
 	v := q.data[0]
 	q.data = q.data[1:]
-	q.size -= 1
 
 	return v, nil
 }
 
-func (q *queue) IsEmpty() bool {
-	return q.size == 0
+func (q *QueueImpl) IsEmpty() bool {
+	return len(q.data) == 0
 }
 
 func main() {
