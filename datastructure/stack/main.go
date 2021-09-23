@@ -51,7 +51,7 @@ func main() {
 		if err != nil {
 			fmt.Println(err)
 		} else {
-			fmt.Println(v)
+			fmt.Println("pop:", v)
 		}
 	}
 }

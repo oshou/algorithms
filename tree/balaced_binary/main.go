@@ -105,26 +105,26 @@ func (n *node) SearchMin() *node {
 	}
 }
 
-func (n *node) InOrder() {
+func (n *node) inorder() {
 	if n != nil {
-		n.left.InOrder()
+		n.left.inorder()
 		fmt.Println(n.value)
-		n.right.InOrder()
+		n.right.inorder()
 	}
 }
 
-func (n *node) PreOrder() {
+func (n *node) preorder() {
 	if n != nil {
 		fmt.Println(n.value)
-		n.left.PreOrder()
-		n.right.PreOrder()
+		n.left.inorder()
+		n.right.inorder()
 	}
 }
 
-func (n *node) PostOrder() {
+func (n *node) postorder() {
 	if n != nil {
-		n.left.PostOrder()
-		n.right.PostOrder()
+		n.left.inorder()
+		n.right.inorder()
 		fmt.Println(n.value)
 	}
 }
@@ -150,12 +150,12 @@ func main() {
 	fmt.Println("search:", root.Search(5))
 	fmt.Println("search:", root.Search(6))
 
-	fmt.Println("--- InOrder ---")
-	root.InOrder()
+	fmt.Println("inorder")
+	root.inorder()
 
-	fmt.Println("--- PreOrder ---")
-	root.PreOrder()
+	fmt.Println("preorder")
+	root.preorder()
 
-	fmt.Println("--- PostOrder ---")
-	root.PostOrder()
+	fmt.Println("postorder")
+	root.postorder()
 }

@@ -56,12 +56,11 @@ func main() {
 	}
 	heap.Init(pq)
 	item := Item{
-		priority: 0,
+		priority: 3,
 		value:    1000,
 	}
 	heap.Push(pq, item)
-	fmt.Printf("minimum: %d\n", (*pq).data[0])
 	for pq.Len() > 0 {
-		fmt.Printf("%d \n", heap.Pop(pq))
+		fmt.Printf("dequeue %d \n", heap.Pop(pq))
 	}
 }

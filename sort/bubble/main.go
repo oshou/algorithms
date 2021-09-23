@@ -4,10 +4,11 @@ import (
 	"fmt"
 )
 
+// 隣り合う要素で大小比較、大きな値を最後尾へ追いやる
+// O(n^2): 二重for分のため
 func bubble(arr []int) []int {
-	lastIndex := len(arr) - 1
-	for i := 0; i < lastIndex; i++ {
-		for j := 0; j < lastIndex-i; j++ {
+	for i := 0; i < len(arr)-1; i++ {
+		for j := 0; j < len(arr)-1-i; j++ {
 			if arr[j] > arr[j+1] {
 				arr[j], arr[j+1] = arr[j+1], arr[j]
 			}

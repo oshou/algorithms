@@ -2,21 +2,35 @@ package main
 
 import "fmt"
 
-func insertion(arr []int) []int {
-	sorted = []int
-	for i := 1; i <= len(arr)-1; i++ {
-		insertIndex := i
-		for j := insertIndex-1; j >=0; j-- {
-			if arr[i] < arr[j]{
-				arr[j+1]=arr[j]
-				insertIndex-=1
+func minIndex(arr []int) int {
+	var (
+		min    int
+		minIdx int
+	)
+	for i, _ := range arr {
+		if i == 0 {
+			minIdx = 0
+			min = arr[minIdx]
+		} else {
+			if arr[i] < min {
+				minIdx = i
+				min = arr[minIdx]
 			}
 		}
 	}
+	return minIdx
+}
+
+func insertion(arr []int) []int {
+	for i, _ := range arr {
+		idx := minIndex(arr[i : len(arr)-1])
+		arr[i], arr[i+idx] = arr[i+idx], arr[i]
+	}
+	return arr
 }
 
 func main() {
 	unsorted := []int{1, 8, 5, 3, 126, 33, 25, 26, 35, 14, 52}
-	sorted := selection(unsorted)
+	sorted := insertion(unsorted)
 	fmt.Println(sorted)
 }

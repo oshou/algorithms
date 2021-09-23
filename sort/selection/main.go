@@ -3,19 +3,19 @@ package main
 import "fmt"
 
 func selection(arr []int) []int {
-	minIndex := -1
-	size := len(arr) - 1
-	for i := 0; i < size; i++ {
-		for j := i; j <= size; j++ {
-			if minIndex < 0 {
+	var minIndex int
+	for i := 0; i < len(arr)-1; i++ {
+		for j := i; j <= len(arr)-1; j++ {
+			// iから末尾までで最小要素を探す
+			if j == i {
 				minIndex = j
 			}
 			if arr[minIndex] > arr[j] {
 				minIndex = j
 			}
 		}
+		// 現在位置の値と最小値をswitch
 		arr[i], arr[minIndex] = arr[minIndex], arr[i]
-		minIndex = -1
 	}
 	return arr
 }
