@@ -8,7 +8,6 @@ import (
 type Stack interface {
 	Push(v interface{})
 	Pop() (interface{}, error)
-	IsEmpty() bool
 }
 
 type StackImpl struct {
@@ -27,7 +26,7 @@ func (s *StackImpl) Push(v interface{}) {
 }
 
 func (s *StackImpl) Pop() (interface{}, error) {
-	if s.IsEmpty() {
+	if s.isEmpty() {
 		return 0, errors.New("stack is empty")
 	}
 	v := s.data[len(s.data)-1]
@@ -36,22 +35,25 @@ func (s *StackImpl) Pop() (interface{}, error) {
 	return v, nil
 }
 
-func (s *StackImpl) IsEmpty() bool {
+func (s *StackImpl) isEmpty() bool {
 	return len(s.data) == 0
 }
 
 func main() {
 	s := NewStack(3)
 	s.Push(1)
+	fmt.Println(s.data)
 	s.Push(2)
+	fmt.Println(s.data)
 	s.Push(3)
+	fmt.Println(s.data)
 
-	for i := 1; i <= 4; i++ {
-		v, err := s.Pop()
-		if err != nil {
-			fmt.Println(err)
-		} else {
-			fmt.Println("pop:", v)
-		}
-	}
+	s.Pop()
+	fmt.Println(s.data)
+	s.Pop()
+	fmt.Println(s.data)
+	s.Pop()
+	fmt.Println(s.data)
+	s.Pop()
+	fmt.Println(s.data)
 }

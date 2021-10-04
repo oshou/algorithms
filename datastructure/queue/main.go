@@ -1,58 +1,40 @@
 package main
 
-import (
-	"errors"
-	"fmt"
-)
+import "fmt"
 
-type Queue interface {
-	Enqueue(v interface{})
-	Dequeue() (interface{}, error)
-	IsEmpty() bool
-}
-
-type QueueImpl struct {
+type Queue struct {
 	data []interface{}
 }
 
-func NewQueue(cap int) *QueueImpl {
-	d := make([]interface{}, 0, cap)
-	return &QueueImpl{
-		data: d,
-	}
-}
-
-func (q *QueueImpl) Enqueue(v interface{}) {
+func (q *Queue) Enqueue(v interface{}) {
 	q.data = append(q.data, v)
 }
 
-func (q *QueueImpl) Dequeue() (interface{}, error) {
-	if q.IsEmpty() {
-		return 0, errors.New("queue is empty")
+func (q *Queue) Dequeue() interface{} {
+	if len(q.data) != 0 {
+		v := q.data[0]
+		q.data = q.data[1:]
+		return v
 	}
-	v := q.data[0]
-	q.data = q.data[1:]
-
-	return v, nil
-}
-
-func (q *QueueImpl) IsEmpty() bool {
-	return len(q.data) == 0
+	return nil
 }
 
 func main() {
-	q := NewQueue(3)
+	q := Queue{}
 
 	q.Enqueue(1)
+	fmt.Println(q.data)
 	q.Enqueue(2)
+	fmt.Println(q.data)
 	q.Enqueue(3)
+	fmt.Println(q.data)
 
-	for i := 1; i <= 4; i++ {
-		v, err := q.Dequeue()
-		if err != nil {
-			fmt.Println(err)
-		} else {
-			fmt.Println("dequeue:", v)
-		}
-	}
+	fmt.Println(q.Dequeue())
+	fmt.Println(q.data)
+	fmt.Println(q.Dequeue())
+	fmt.Println(q.data)
+	fmt.Println(q.Dequeue())
+	fmt.Println(q.data)
+	fmt.Println(q.Dequeue())
+	fmt.Println(q.data)
 }
