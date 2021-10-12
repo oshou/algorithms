@@ -1,11 +1,15 @@
 import math
 
 
-class Solution:
-    def get_prime(self, n: int) -> bool:
-        max = int(math.sqrt(n))
-        ans = True
-        for i in range(2, max+1):
-            if n % i == 0:
-                ans = False
-        return ans
+def prime(n: int) -> bool:
+    ans = []
+    max = int(math.sqrt(n))
+    for i in range(2, max+1):
+        for j in range(1, i*j)
+        if n % i == 0:
+            ans = False
+    return ans
+
+
+if __name__ == '__main__':
+    print(prime(1000))

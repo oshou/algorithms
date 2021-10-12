@@ -2,7 +2,7 @@ package main
 
 import "fmt"
 
-func getPrime(n int) []int {
+func prime(n int) []int {
 
 	// チェック用の配列作成
 	arr := make([]bool, n+1)
@@ -30,5 +30,5 @@ func getPrime(n int) []int {
 }
 
 func main() {
-	fmt.Println(getPrime(10000))
+	fmt.Println(prime(10000))
 }
