@@ -13,10 +13,8 @@ func quick(arr []int) []int {
 		right []int
 	)
 
-	// pivotを設定
+	// Pivot基準に大小で2分割
 	pivot := arr[0]
-
-	// pivotと大小比較して振り分け
 	for _, v := range arr[1:] {
 		if v > pivot {
 			right = append(right, v)
@@ -25,11 +23,11 @@ func quick(arr []int) []int {
 		}
 	}
 
-	// 2分した各要素に対して再帰実行
+	// 分割した要素でそれぞれ再帰実行
 	left = quick(left)
 	right = quick(right)
 
-	// ソート(left -> pivot -> right)
+	// 順序制御
 	ans = append(left, pivot)
 	ans = append(ans, right...)
 

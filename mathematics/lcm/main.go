@@ -14,5 +14,7 @@ func lcm(a, b int) int {
 }
 
 func main() {
-	fmt.Println(lcm(15, 20))
+	var a, b int
+	fmt.Scan(&a, &b)
+	fmt.Println(lcm(a, b))
 }

@@ -2,7 +2,6 @@ package main
 
 import "fmt"
 
-// メモ化
 var (
 	memo map[int]int
 )
@@ -11,7 +10,15 @@ func init() {
 	memo = make(map[int]int)
 }
 
-func fibonacci(n int) int {
+func fib1(n int) int {
+	if n == 1 || n == 2 {
+		return 1
+	} else {
+		return fib1(n-1) + fib1(n-2)
+	}
+}
+
+func fib2(n int) int {
 	value, ok := memo[n]
 	if ok {
 		return value
@@ -21,15 +28,17 @@ func fibonacci(n int) int {
 		memo[n] = 1
 		return 1
 	} else {
-		memo[n] = fibonacci(n-1) + fibonacci(n-2)
+		memo[n] = fib2(n-1) + fib2(n-2)
 		return memo[n]
 	}
 }
 
 func main() {
-	fmt.Println(fibonacci(1))
-	fmt.Println(fibonacci(2))
-	fmt.Println(fibonacci(3))
-	fmt.Println(fibonacci(4))
-	fmt.Println(fibonacci(5))
+	fmt.Println(fib1(10))
+	fmt.Println(fib1(100))
+	fmt.Println(fib1(1000))
+
+	fmt.Println(fib2(10))
+	fmt.Println(fib2(100))
+	fmt.Println(fib2(1000))
 }

@@ -2,40 +2,34 @@ package main
 
 import "fmt"
 
-type Node interface {
-	Insert(v int)
-	Delete(v int)
-	Search(v int) *Node
-}
-
-type node struct {
+type Node struct {
 	value int
-	left  *node
-	right *node
+	left  *Node
+	right *Node
 }
 
-func NewNode(v int) *node {
-	return &node{
+func NewNode(v int) *Node {
+	return &Node{
 		value: v,
 		left:  nil,
 		right: nil,
 	}
 }
 
-func (n *node) Insert(v int) {
+func (n *Node) Insert(v int) {
 	if n == nil {
 		n = NewNode(v)
 		return
 	}
 
 	switch {
-	case n.value > v:
+	case v < n.value:
 		if n.left == nil {
 			n.left = NewNode(v)
 			return
 		}
 		n.left.Insert(v)
-	case n.value < v:
+	case v > n.value:
 		if n.right == nil {
 			n.right = NewNode(v)
 			return
@@ -44,118 +38,59 @@ func (n *node) Insert(v int) {
 	}
 }
 
-func (n *node) Delete(v int) {
+func (n *Node) Delete(v int) *Node {
 	if n == nil {
-		return
-	}
-
-	switch {
-	case n.value > v:
-		if n.left.value == v {
-			n.left = nil
-		}
-		n.left.Delete(v)
-	case n.value < v:
-		if n.right.value == v {
-			n.left = nil
-		}
-		n.right.Delete(v)
-	default:
-		if n.left == nil {
-			*n = *n.right
-		} else if n.right == nil {
-			*n = *n.left
-		} else {
-			min := n.right.SearchMin()
-			n.value = min.value
-			n.right.Delete(min.value)
-		}
-	}
-}
-
-func (n *node) Search(v int) *node {
-	if n == nil {
-		fmt.Println(nil)
 		return nil
 	}
+
 	switch {
-	case n.value == v:
-		return n
-	case n.value > v:
-		if n.left == nil {
-			return nil
-		}
-		return n.left.Search(v)
+	case v < n.value:
+		n.left = n.left.Delete(v)
+	case v > n.value:
+		n.right = n.right.Delete(v)
 	default:
-		if n.right == nil {
-			return nil
+		switch {
+		case n.left == nil:
+			return n.right
+		case n.right == nil:
+			return n.left
+		default:
+			tmp := n.right.Min()
+			n.value = tmp.value
+			n.right = n.right.Delete(tmp.value)
 		}
-		return n.right.Search(v)
 	}
+	return n
 }
 
-func (n *node) SearchMin() *node {
+func (n *Node) Min() *Node {
 	if n == nil {
 		return nil
 	}
 	if n.left != nil {
-		return n.left.SearchMin()
+		return n.left.Min()
 	} else {
 		return n
 	}
 }
 
-func (n *node) InOrder() {
+func (n *Node) Inorder() {
 	if n != nil {
-		n.left.InOrder()
+		n.left.Inorder()
 		fmt.Println(n.value)
-		n.right.InOrder()
+		n.right.Inorder()
 	}
-}
 
-func (n *node) PreOrder() {
-	if n != nil {
-		fmt.Println(n.value)
-		n.left.PreOrder()
-		n.right.PreOrder()
-	}
-}
-
-func (n *node) PostOrder() {
-	if n != nil {
-		n.left.PostOrder()
-		n.right.PostOrder()
-		fmt.Println(n.value)
-	}
 }
 
 func main() {
-	root := NewNode(5)
-	root.Insert(1)
-	root.Insert(9)
+	root := &Node{1, nil, nil}
 	root.Insert(3)
+	root.Insert(5)
 	root.Insert(2)
 	root.Insert(4)
 	root.Insert(6)
-
+	root.Inorder()
 	root.Delete(5)
-
-	fmt.Printf("t: %v\n", root)
-	fmt.Printf("t->l: %v\n", root.left)
-	fmt.Printf("t->l->r: %v\n", root.left.right)
-	fmt.Printf("t->l->r->l: %v\n", root.left.right.left)
-	fmt.Printf("t->l->r->r: %v\n", root.left.right.right)
-	fmt.Printf("t->r: %v\n", root.right)
-
-	fmt.Println("search:", root.Search(5))
-	fmt.Println("search:", root.Search(6))
-
-	fmt.Println("--- InOrder ---")
-	root.InOrder()
-
-	fmt.Println("--- PreOrder ---")
-	root.PreOrder()
-
-	fmt.Println("--- PostOrder ---")
-	root.PostOrder()
+	root.Inorder()
 }

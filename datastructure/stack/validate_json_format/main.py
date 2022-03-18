@@ -5,8 +5,8 @@ class Stack(object):
     def __init__(self) -> None:
         self.data = []
 
-    def push(self, v) -> None:
-        self.data.append(v)
+    def push(self, data) -> None:
+        self.data.append(data)
 
     def pop(self) -> Any:
         if self.data:
@@ -16,15 +16,20 @@ class Stack(object):
         return len(self.data) == 0
 
 
-def validate_json_format(stack: Stack, chars: str) -> bool:
-    lookup = {'{': '}', '[': ']', '(': ')'}
+def validate_format(chars: str) -> bool:
+    lookup = {
+        '{': '}',
+        '(': ')',
+        '[': ']'
+    }
+    stack = Stack()
     for char in chars:
         if char in lookup.keys():
             stack.push(lookup[char])
         if char in lookup.values():
-            if not stack:
+            if stack.pop() != char:
                 return False
-            if char != stack.pop():
+            if not stack:
                 return False
 
     if stack.is_empty():
@@ -36,7 +41,5 @@ def validate_json_format(stack: Stack, chars: str) -> bool:
 if __name__ == '__main__':
     chars1 = "{'key1': 'value1', 'key2': [1, 2, 3], 'key3': (1, 2, 3)}"
     chars2 = "[{'key1': 'value1', 'key2': [1, 2, 3], 'key3': (1, 2, 3)}"
-    stack = Stack()
-
-    print(validate_json_format(stack, chars1))
-    print(validate_json_format(stack, chars2))
+    print(validate_format(chars1))
+    print(validate_format(chars2))

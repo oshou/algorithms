@@ -1,12 +1,6 @@
 package main
 
-import (
-	"errors"
-	"fmt"
-)
-
-// Input {'key1': 'value1', 'key2': [1, 2, 3], 'key3': (1, 2, 3)}  Output True
-// Input [{'key1': 'value1', 'key2': [1, 2, 3], 'key3': (1, 2, 3)} Output False
+import "fmt"
 
 type Stack struct {
 	data []interface{}
@@ -16,43 +10,39 @@ func (s *Stack) Push(v interface{}) {
 	s.data = append(s.data, v)
 }
 
-func (s *Stack) Pop() (interface{}, error) {
-	if len(s.data) != 0 {
+func (s *Stack) Pop() interface{} {
+	if len(s.data) > 0 {
 		v := s.data[len(s.data)-1]
 		s.data = s.data[:len(s.data)-1]
-		return v, nil
+		return v
 	}
-	return nil, errors.New("not found")
-}
-
-func (s *Stack) Peak() interface{} {
-	if len(s.data) != 0 {
-		return s.data[len(s.data)-1]
-	}
-	return 0
+	return nil
 }
 
 func (s *Stack) IsEmpty() bool {
 	return len(s.data) == 0
 }
 
-func validateJSONFormat(stack Stack, chars string) bool {
-	for _, c := range chars {
-		switch c {
-		case '{':
-			stack.Push('}')
+func validateFormat(chars string) bool {
+	stack := Stack{}
+	for _, char := range chars {
+		switch char {
 		case '[':
 			stack.Push(']')
 		case '(':
 			stack.Push(')')
-		default:
-			if c == stack.Peak() {
-				if _, err := stack.Pop(); err != nil {
-					return false
-				}
+		case '{':
+			stack.Push('}')
+		case ']', ')', '}':
+			if stack.IsEmpty() {
+				return false
+			}
+			if stack.Pop() != char {
+				return false
 			}
 		}
 	}
+
 	if stack.IsEmpty() {
 		return true
 	} else {
@@ -63,10 +53,6 @@ func validateJSONFormat(stack Stack, chars string) bool {
 func main() {
 	chars1 := "{'key1': 'value1', 'key2': [1, 2, 3], 'key3': (1, 2, 3)}"
 	chars2 := "[{'key1': 'value1', 'key2': [1, 2, 3], 'key3': (1, 2, 3)}"
-	stack := Stack{
-		data: []interface{}{},
-	}
-
-	fmt.Println(validateJSONFormat(stack, chars1))
-	fmt.Println(validateJSONFormat(stack, chars2))
+	fmt.Println(validateFormat(chars1))
+	fmt.Println(validateFormat(chars2))
 }

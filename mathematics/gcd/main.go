@@ -10,5 +10,7 @@ func gcd(a, b int) int {
 }
 
 func main() {
-	fmt.Println(gcd(15, 20))
+	var a, b int
+	fmt.Scan(&a, &b)
+	fmt.Println(gcd(a, b))
 }

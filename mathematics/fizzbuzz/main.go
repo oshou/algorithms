@@ -21,6 +21,6 @@ func fizzbuzz(n int) {
 
 func main() {
 	var n int
-	fmt.Scan("n: ", &n)
-	fizzbuzz(15)
+	fmt.Scan(&n)
+	fizzbuzz(n)
 }
